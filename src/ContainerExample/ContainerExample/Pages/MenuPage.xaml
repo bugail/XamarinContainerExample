@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:Corcav.Behaviors;assembly=Corcav.Behaviors"
+             Title="Menu"
+             x:Class="ContainerExample.Pages.MenuPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <ListView x:Name="listView" RowHeight="60" ItemsSource="{Binding MenuItems}" SelectedItem="{Binding SelectedItem}" 
+                      SeparatorColor="Transparent" SeparatorVisibility="None">
+                <behaviors:Interaction.Behaviors>
+                    <behaviors:BehaviorCollection>
+                        <behaviors:EventToCommand EventName="ItemSelected" Command="{Binding NavigateCommand}" />
+                    </behaviors:BehaviorCollection>
+                </behaviors:Interaction.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="5,10,5,10" Orientation="Horizontal">
+                                <Image HeightRequest="45" WidthRequest="45" Source="{Binding Image}" VerticalOptions="Center" />
+                                <Label VerticalTextAlignment="Center" VerticalOptions="Center" Text="{Binding Label}" TextColor="#222222" FontSize="16" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
